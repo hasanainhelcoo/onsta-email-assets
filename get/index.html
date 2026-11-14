@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ONSTA</title>
+<style>
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:-apple-system,Arial,sans-serif;background:#f4f5f7;color:#1f2a30;padding:16px;box-sizing:border-box}
+  .box{max-width:420px;width:100%;background:#fff;border-radius:16px;padding:28px 20px;text-align:center;display:none}
+  h1{font-size:22px;margin:0 0 18px}
+  a{display:inline-block;margin:4px}
+  img{height:48px;width:auto;border:0}
+</style>
+</head>
+<body>
+<div class="box" id="box">
+  <h1>Download the ONSTA App</h1>
+  <a href="https://apps.apple.com/app/onsta/id6801993828"><img src="../app-store.png?v=2" alt="Download on the App Store"></a>
+  <a href="https://play.google.com/store/apps/details?id=ae.onsta.app"><img src="../google-play.png?v=2" alt="Get it on Google Play"></a>
+</div>
+<script>
+(function () {
+  var ua = navigator.userAgent || '';
+  if (/Android/i.test(ua)) { location.replace('https://play.google.com/store/apps/details?id=ae.onsta.app'); return; }
+  if (/iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) { location.replace('https://apps.apple.com/app/onsta/id6801993828'); return; }
+  document.getElementById('box').style.display = 'block';
+})();
+</script>
+</body>
+</html>
