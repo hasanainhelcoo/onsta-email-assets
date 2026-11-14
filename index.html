@@ -3,47 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ONSTA Buttons</title>
+<title>ONSTA Signature</title>
 <style>
-  body{margin:0;padding:24px 16px;font-family:-apple-system,Tahoma,Arial,sans-serif;background:#f4f5f7;color:#1f2a30}
-  .box{max-width:480px;margin:0 auto;background:#fff;border-radius:14px;padding:20px}
-  h1{font-size:18px;margin:0 0 12px}
-  ol{padding-right:20px;line-height:1.9;margin:0 0 20px;font-size:15px}
-  .copy{border:2px dashed #c8ced4;border-radius:10px;padding:16px;background:#fff;text-align:center}
+  /* No background colors anywhere: copied content must not carry a background. */
+  body{margin:0;padding:24px 16px;font-family:-apple-system,Tahoma,Arial,sans-serif;max-width:460px;margin:0 auto}
+  h1{font-size:19px;margin:0 0 12px}
+  ol{padding-right:20px;line-height:1.9;margin:0 0 18px;font-size:15px}
+  #cp{display:block;width:100%;padding:16px;margin:0 0 20px;font-size:18px;font-weight:bold;color:#fff;background:#2563eb;border:0;border-radius:12px;font-family:inherit}
+  #sig{text-align:center;direction:ltr}
+  #sig img{max-width:100%;height:auto}
 </style>
 </head>
 <body>
-<div class="box">
-  <h1>أزرار ONSTA للتوقيع</h1>
-  <ol>
-    <li>اضغط الزر الأزرق "انسخ التوقيع"</li>
-    <li>أوتلوك ← الإعدادات ← التوقيع ← امسح كل شي ← الصق</li>
-    <li>اكتب مسافة وامسحها، وبعدها اضغط ✓</li>
-  </ol>
-  <button id="cp" style="display:block;width:100%;padding:16px;margin:0 0 16px;font-size:18px;font-weight:bold;color:#fff;background:#2563eb;border:0;border-radius:10px;font-family:inherit">انسخ التوقيع</button>
-  <div class="copy" id="btns"><div dir="ltr" align="center" style="direction:ltr;text-align:center"><center><b style="font-size:17px">Download the ONSTA App</b><br><span style="font-size:13px;opacity:0.7">Available on iPhone and Android</span><br><br><a href="https://hasanainhelcoo.github.io/onsta-email-assets/ios/"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/app-store.png?v=2" alt="Download on the App Store" width="126" height="42" style="border:0;width:126px;height:42px"></a>&nbsp;<a href="https://hasanainhelcoo.github.io/onsta-email-assets/android/"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/google-play.png?v=2" alt="Get it on Google Play" width="141" height="42" style="border:0;width:141px;height:42px"></a><br><br><b>ONSTA Team</b></center></div></div>
-</div>
+<h1>توقيع ONSTA</h1>
+<ol>
+  <li>اضغط "انسخ التوقيع"</li>
+  <li>أوتلوك ← الإعدادات ← التوقيع ← امسح كل شي ← الصق ← ✓</li>
+</ol>
+<button id="cp" type="button">انسخ التوقيع</button>
+<div id="sig"><a href="https://hasanainhelcoo.github.io/onsta-email-assets/get/"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/signature.png?v=6" alt="Download the ONSTA App - App Store and Google Play - ONSTA Team" width="398" height="142"></a></div>
 <script>
-document.getElementById('cp').addEventListener('click', function () {
-  var btn = this, box = document.getElementById('btns');
-  var ok = false;
-  try {
-    box.setAttribute('contenteditable', 'true');
-    var r = document.createRange(); r.selectNodeContents(box);
-    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
-    ok = document.execCommand('copy');
-    sel.removeAllRanges();
-  } catch (e) { ok = false; }
-  box.removeAttribute('contenteditable');
+(function () {
+  var URL = 'https://hasanainhelcoo.github.io/onsta-email-assets/';
+  // Exactly what goes on the clipboard: one linked image plus a zero-width space,
+  // so Outlook sees real text and keeps the signature. No colors, no backgrounds.
+  var HTML = '<a href="' + URL + 'get/"><img src="' + URL + 'signature.png?v=6" ' +
+    'alt="Download the ONSTA App - App Store and Google Play - ONSTA Team" width="398" height="142" ' +
+    'style="border:0;width:398px;height:142px;max-width:100%"></a>&#8203;';
+  var TEXT = 'Download the ONSTA App\nONSTA Team';
+  var btn = document.getElementById('cp');
+
   function done() { btn.textContent = 'تم النسخ ✓ روح الصقه بأوتلوك'; btn.style.background = '#16a34a'; }
-  if (ok) { done(); return; }
-  if (navigator.clipboard && window.ClipboardItem) {
-    navigator.clipboard.write([new ClipboardItem({
-      'text/html': new Blob([box.innerHTML], {type: 'text/html'}),
-      'text/plain': new Blob(['Download the ONSTA App\nAvailable on iPhone and Android\nONSTA Team'], {type: 'text/plain'})
-    })]).then(done, function () { btn.textContent = 'ما انسخ، جرّب مرة ثانية'; });
-  }
-});
+  function fail() { btn.textContent = 'ما انسخ، اضغط مرة ثانية'; btn.style.background = '#dc2626'; }
+
+  btn.addEventListener('click', function () {
+    var handled = false;
+    function onCopy(e) {
+      e.clipboardData.setData('text/html', HTML);
+      e.clipboardData.setData('text/plain', TEXT);
+      e.preventDefault();
+      handled = true;
+    }
+    document.addEventListener('copy', onCopy);
+    // iOS needs a selection for the copy command to fire.
+    var sel = window.getSelection(), r = document.createRange();
+    r.selectNodeContents(document.getElementById('sig'));
+    sel.removeAllRanges(); sel.addRange(r);
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    document.removeEventListener('copy', onCopy);
+    if (ok && handled) { done(); return; }
+    if (navigator.clipboard && window.ClipboardItem) {
+      navigator.clipboard.write([new ClipboardItem({
+        'text/html': new Blob([HTML], {type: 'text/html'}),
+        'text/plain': new Blob([TEXT], {type: 'text/plain'})
+      })]).then(done, fail);
+    } else { fail(); }
+  });
+})();
 </script>
 </body>
 </html>
