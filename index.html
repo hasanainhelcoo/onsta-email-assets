@@ -20,13 +20,14 @@
     <li>أوتلوك ← الإعدادات ← التوقيع ← الصق</li>
   </ol>
   <button id="cp" style="display:block;width:100%;padding:16px;margin:0 0 16px;font-size:18px;font-weight:bold;color:#fff;background:#2563eb;border:0;border-radius:10px;font-family:inherit">انسخ التوقيع</button>
-  <div class="copy" id="btns"><a href="https://hasanainhelcoo.github.io/onsta-email-assets/get/"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/signature.png?v=3" alt="Download the ONSTA App - App Store and Google Play" width="398" height="111" style="border:0;width:398px;height:111px;max-width:100%"></a></div>
+  <div class="copy" id="btns"><p dir="ltr" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.7"><b>Download the ONSTA App</b><br><a href="https://apps.apple.com/app/onsta/id6801993828" style="color:#2563eb;font-weight:bold;text-decoration:none">App Store</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://play.google.com/store/apps/details?id=ae.onsta.app" style="color:#2563eb;font-weight:bold;text-decoration:none">Google Play</a></p></div>
 </div>
 <script>
 document.getElementById('cp').addEventListener('click', async function () {
   var btn = this, box = document.getElementById('btns');
   var html = box.innerHTML;
-  var text = 'Download the ONSTA App: https://hasanainhelcoo.github.io/onsta-email-assets/get/';
+  var text = 'Download the ONSTA App
+App Store | Google Play';
   try {
     await navigator.clipboard.write([new ClipboardItem({
       'text/html': new Blob([html], {type: 'text/html'}),
