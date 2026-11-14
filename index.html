@@ -16,7 +16,9 @@
 </head>
 <body>
 <h1>توقيع ONSTA</h1>
+<p id="notSafari" style="display:none;margin:0 0 16px;padding:14px;border-radius:12px;border:2px solid #dc2626;color:#dc2626;font-weight:bold;font-size:16px;line-height:1.7">افتح هالصفحة بـ Safari مو Chrome. النسخ من Chrome يضيف خلفية بيضاء للتوقيع.</p>
 <ol>
+  <li>افتح هالصفحة بـ <b>Safari</b></li>
   <li>اضغط "انسخ التوقيع"</li>
   <li>أوتلوك ← الإعدادات ← التوقيع ← امسح كل شي ← الصق ← ✓</li>
 </ol>
@@ -25,13 +27,18 @@
 <script>
 (function () {
   var URL = 'https://hasanainhelcoo.github.io/onsta-email-assets/';
-  // Exactly what goes on the clipboard: one linked image plus a zero-width space,
-  // so Outlook sees real text and keeps the signature. No colors, no backgrounds.
+  // Exactly what goes on the clipboard: one linked image plus a blank Braille
+  // character (U+2800). Outlook ignores zero-width/space characters when deciding
+  // whether a signature is empty, but counts U+2800, which still shows as blank.
   var HTML = '<a href="' + URL + 'get/"><img src="' + URL + 'signature.png?v=6" ' +
     'alt="Download the ONSTA App - App Store and Google Play - ONSTA Team" width="398" height="142" ' +
-    'style="border:0;width:398px;height:142px;max-width:100%"></a>&#8203;';
+    'style="border:0;width:398px;height:142px;max-width:100%"></a>&#10240;';
   var TEXT = 'Download the ONSTA App\nONSTA Team';
   var btn = document.getElementById('cp');
+  // Chrome/Firefox/Edge on iPhone add the page's white background to what they copy.
+  if (/CriOS|FxiOS|EdgiOS/.test(navigator.userAgent)) {
+    document.getElementById('notSafari').style.display = 'block';
+  }
 
   function done() { btn.textContent = 'تم النسخ ✓ روح الصقه بأوتلوك'; btn.style.background = '#16a34a'; }
   function fail() { btn.textContent = 'ما انسخ، اضغط مرة ثانية'; btn.style.background = '#dc2626'; }
