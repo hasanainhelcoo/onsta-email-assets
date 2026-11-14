@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ONSTA</title>
+<style>
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:-apple-system,Tahoma,Arial,sans-serif;background:#f4f5f7;color:#1f2a30;padding:16px;box-sizing:border-box}
+  .box{max-width:360px;width:100%;background:#fff;border-radius:16px;padding:28px 20px;text-align:center;display:none}
+  h1{font-size:22px;margin:0 0 8px}
+  p{font-size:16px;line-height:1.7;margin:0 0 20px;color:#4b5761}
+  img{height:52px;width:auto;border:0}
+</style>
+</head>
+<body>
+<div class="box" id="box">
+  <h1>ONSTA</h1>
+  <p id="msg"></p>
+  <a id="go"><img id="badge" alt=""></a>
+</div>
+<script>
+(function () {
+  var IOS = 'https://apps.apple.com/app/onsta/id6801993828';
+  var ANDROID = 'https://play.google.com/store/apps/details?id=ae.onsta.app';
+  var target = 'ios';
+  var ua = navigator.userAgent || '';
+  var isAndroid = /Android/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var device = isAndroid ? 'android' : (isIOS ? 'ios' : 'desktop');
+  if (device === 'desktop' || device === target) {
+    location.replace(target === 'ios' ? IOS : ANDROID);
+    return;
+  }
+  // Wrong button for this device: don't open it, point to the right store instead.
+  var right = device === 'ios'
+    ? {url: IOS, img: '../app-store.png?v=2', alt: 'Download on the App Store', msg: 'هذا الرابط لأجهزة أندرويد. جهازك آيفون، حمّل ONSTA من هنا:'}
+    : {url: ANDROID, img: '../google-play.png?v=2', alt: 'Get it on Google Play', msg: 'هذا الرابط لأجهزة الآيفون. جهازك أندرويد، حمّل ONSTA من هنا:'};
+  document.getElementById('msg').textContent = right.msg;
+  document.getElementById('go').href = right.url;
+  var b = document.getElementById('badge'); b.src = right.img; b.alt = right.alt;
+  document.getElementById('box').style.display = 'block';
+})();
+</script>
+</body>
+</html>
