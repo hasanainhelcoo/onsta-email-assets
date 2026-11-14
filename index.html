@@ -17,29 +17,32 @@
   <h1>أزرار ONSTA للتوقيع</h1>
   <ol>
     <li>اضغط الزر الأزرق "انسخ التوقيع"</li>
-    <li>أوتلوك ← الإعدادات ← التوقيع ← الصق</li>
+    <li>أوتلوك ← الإعدادات ← التوقيع ← امسح كل شي ← الصق</li>
+    <li>اكتب مسافة وامسحها، وبعدها اضغط ✓</li>
   </ol>
   <button id="cp" style="display:block;width:100%;padding:16px;margin:0 0 16px;font-size:18px;font-weight:bold;color:#fff;background:#2563eb;border:0;border-radius:10px;font-family:inherit">انسخ التوقيع</button>
-  <div class="copy" id="btns">Download the ONSTA App<br><a href="https://hasanainhelcoo.github.io/onsta-email-assets/ios/"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/app-store.png?v=2" alt="Download on the App Store" width="132" height="44" style="border:0;width:132px;height:44px"></a>&nbsp;<a href="https://hasanainhelcoo.github.io/onsta-email-assets/android/"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/google-play.png?v=2" alt="Get it on Google Play" width="148" height="44" style="border:0;width:148px;height:44px"></a></div>
+  <div class="copy" id="btns"><a href="https://hasanainhelcoo.github.io/onsta-email-assets/get/"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/signature.png?v=3" alt="Download the ONSTA App - App Store and Google Play" width="398" height="111" style="border:0;width:398px;height:111px;max-width:100%"></a></div>
 </div>
 <script>
-document.getElementById('cp').addEventListener('click', async function () {
+document.getElementById('cp').addEventListener('click', function () {
   var btn = this, box = document.getElementById('btns');
-  var html = box.innerHTML;
-  var text = 'Download the ONSTA App
-App Store | Google Play';
+  var ok = false;
   try {
-    await navigator.clipboard.write([new ClipboardItem({
-      'text/html': new Blob([html], {type: 'text/html'}),
-      'text/plain': new Blob([text], {type: 'text/plain'})
-    })]);
-  } catch (e) {
+    box.setAttribute('contenteditable', 'true');
     var r = document.createRange(); r.selectNodeContents(box);
-    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-    document.execCommand('copy'); s.removeAllRanges();
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    ok = document.execCommand('copy');
+    sel.removeAllRanges();
+  } catch (e) { ok = false; }
+  box.removeAttribute('contenteditable');
+  function done() { btn.textContent = 'تم النسخ ✓ روح الصقه بأوتلوك'; btn.style.background = '#16a34a'; }
+  if (ok) { done(); return; }
+  if (navigator.clipboard && window.ClipboardItem) {
+    navigator.clipboard.write([new ClipboardItem({
+      'text/html': new Blob([box.innerHTML], {type: 'text/html'}),
+      'text/plain': new Blob(['Download the ONSTA App'], {type: 'text/plain'})
+    })]).then(done, function () { btn.textContent = 'ما انسخ، جرّب مرة ثانية'; });
   }
-  btn.textContent = 'تم النسخ ✓ روح الصقهم بأوتلوك';
-  btn.style.background = '#16a34a';
 });
 </script>
 </body>
