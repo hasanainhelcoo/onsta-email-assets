@@ -23,15 +23,13 @@
   <li>أوتلوك ← الإعدادات ← التوقيع ← امسح كل شي ← الصق ← ✓</li>
 </ol>
 <button id="cp" type="button">انسخ التوقيع</button>
-<div id="sig"><a href="https://onsta.ai/download"><img src="https://onsta.ai/email-signature.png" alt="Download the ONSTA App - App Store and Google Play - ONSTA Team" width="398" height="142"></a></div>
+<div id="sig" dir="rtl"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/sig-top.png?v=1" alt="Download the ONSTA App" width="398" height="58" style="border:0;max-width:100%;width:398px;height:58px"><br><a href="https://play.google.com/store/apps/details?id=ae.onsta.app"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/sig-googleplay.png?v=1" alt="Get it on Google Play" width="199" height="48" style="border:0;max-width:100%;width:199px;height:48px"></a><a href="https://apps.apple.com/app/onsta/id6801993828"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/sig-appstore.png?v=1" alt="Download on the App Store" width="199" height="48" style="border:0;max-width:100%;width:199px;height:48px"></a><br><img src="https://hasanainhelcoo.github.io/onsta-email-assets/sig-bottom.png?v=1" alt="ONSTA Team" width="398" height="36" style="border:0;max-width:100%;width:398px;height:36px">&#10240;</div>
 <script>
 (function () {
   // Exactly what goes on the clipboard: one linked image plus a blank Braille
   // character (U+2800). Outlook ignores zero-width/space characters when deciding
   // whether a signature is empty, but counts U+2800, which still shows as blank.
-  var HTML = '<a href="https://onsta.ai/download"><img src="https://onsta.ai/email-signature.png" ' +
-    'alt="Download the ONSTA App - App Store and Google Play - ONSTA Team" width="398" height="142" ' +
-    'style="border:0;width:398px;height:142px;max-width:100%"></a>&#10240;';
+  var HTML = '<img src="https://hasanainhelcoo.github.io/onsta-email-assets/sig-top.png?v=1" alt="Download the ONSTA App" width="398" height="58" style="border:0;max-width:100%;width:398px;height:58px"><br><a href="https://play.google.com/store/apps/details?id=ae.onsta.app"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/sig-googleplay.png?v=1" alt="Get it on Google Play" width="199" height="48" style="border:0;max-width:100%;width:199px;height:48px"></a><a href="https://apps.apple.com/app/onsta/id6801993828"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/sig-appstore.png?v=1" alt="Download on the App Store" width="199" height="48" style="border:0;max-width:100%;width:199px;height:48px"></a><br><img src="https://hasanainhelcoo.github.io/onsta-email-assets/sig-bottom.png?v=1" alt="ONSTA Team" width="398" height="36" style="border:0;max-width:100%;width:398px;height:36px">&#10240;';
   var TEXT = 'Download the ONSTA App\nONSTA Team';
   var btn = document.getElementById('cp');
   // Chrome/Firefox/Edge on iPhone add the page's white background to what they copy.
