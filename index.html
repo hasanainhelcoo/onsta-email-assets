@@ -10,7 +10,7 @@
   h1{font-size:19px;margin:0 0 12px}
   ol{padding-right:20px;line-height:1.9;margin:0 0 18px;font-size:15px}
   #cp{display:block;width:100%;padding:16px;margin:0 0 20px;font-size:18px;font-weight:bold;color:#fff;background:#2563eb;border:0;border-radius:12px;font-family:inherit}
-  #sig{text-align:center;direction:rtl;width:340px;margin:0 auto}
+  #sig{direction:rtl;width:340px;margin:0 auto}
   #sig img{max-width:100%;height:auto}
 </style>
 </head>
@@ -23,13 +23,13 @@
   <li>أوتلوك ← الإعدادات ← التوقيع ← امسح كل شي ← الصق ← ✓</li>
 </ol>
 <button id="cp" type="button">انسخ التوقيع</button>
-<div id="sig" dir="rtl"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s2-top.png?v=2" alt="Download the ONSTA App" width="340" height="60" style="border:0;width:340px;height:60px"><br><a href="https://play.google.com/store/apps/details?id=ae.onsta.app"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s2-googleplay.png?v=2" alt="Get it on Google Play" width="179" height="49" style="border:0;width:179px;height:49px"></a><a href="https://apps.apple.com/app/onsta/id6801993828"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s2-appstore.png?v=2" alt="Download on the App Store" width="161" height="49" style="border:0;width:161px;height:49px"></a><br><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s2-bottom.png?v=2" alt="ONSTA Team" width="340" height="37" style="border:0;width:340px;height:37px">&#10240;</div>
+<div id="sig" dir="rtl"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s3-top.png?v=3" alt="Download the ONSTA App" width="398" height="58" style="border:0;width:398px;max-width:100%;height:auto"><br><a href="https://play.google.com/store/apps/details?id=ae.onsta.app"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s3-googleplay.png?v=3" alt="Get it on Google Play" width="208" height="48" style="border:0;width:208px;max-width:52.2%;height:auto"></a><a href="https://apps.apple.com/app/onsta/id6801993828"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s3-appstore.png?v=3" alt="Download on the App Store" width="190" height="48" style="border:0;width:190px;max-width:47.7%;height:auto"></a><br><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s3-bottom.png?v=3" alt="ONSTA Team" width="398" height="36" style="border:0;width:398px;max-width:100%;height:auto">&#10240;</div>
 <script>
 (function () {
   // Exactly what goes on the clipboard: one linked image plus a blank Braille
   // character (U+2800). Outlook ignores zero-width/space characters when deciding
   // whether a signature is empty, but counts U+2800, which still shows as blank.
-  var HTML = '<img src="https://hasanainhelcoo.github.io/onsta-email-assets/s2-top.png?v=2" alt="Download the ONSTA App" width="340" height="60" style="border:0;width:340px;height:60px"><br><a href="https://play.google.com/store/apps/details?id=ae.onsta.app"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s2-googleplay.png?v=2" alt="Get it on Google Play" width="179" height="49" style="border:0;width:179px;height:49px"></a><a href="https://apps.apple.com/app/onsta/id6801993828"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s2-appstore.png?v=2" alt="Download on the App Store" width="161" height="49" style="border:0;width:161px;height:49px"></a><br><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s2-bottom.png?v=2" alt="ONSTA Team" width="340" height="37" style="border:0;width:340px;height:37px">&#10240;';
+  var HTML = '<img src="https://hasanainhelcoo.github.io/onsta-email-assets/s3-top.png?v=3" alt="Download the ONSTA App" width="398" height="58" style="border:0;width:398px;max-width:100%;height:auto"><br><a href="https://play.google.com/store/apps/details?id=ae.onsta.app"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s3-googleplay.png?v=3" alt="Get it on Google Play" width="208" height="48" style="border:0;width:208px;max-width:52.2%;height:auto"></a><a href="https://apps.apple.com/app/onsta/id6801993828"><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s3-appstore.png?v=3" alt="Download on the App Store" width="190" height="48" style="border:0;width:190px;max-width:47.7%;height:auto"></a><br><img src="https://hasanainhelcoo.github.io/onsta-email-assets/s3-bottom.png?v=3" alt="ONSTA Team" width="398" height="36" style="border:0;width:398px;max-width:100%;height:auto">&#10240;';
   var TEXT = 'Download the ONSTA App\nONSTA Team';
   var btn = document.getElementById('cp');
   // Chrome/Firefox/Edge on iPhone add the page's white background to what they copy.
